@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">ekyc</string>
+
+    <string name="straight_face">Để thẳng mặt với màn hình</string>
+    <string name="right_face">Quay mặt sang bên phải</string>
+    <string name="left_face">Quay mặt sang bên trái</string>
+    <string name="up_face">Ngửa mặt lên trên</string>
+    <string name="down_face">Cúi mặt xuống dưới</string>
+    <string name="smile_face">Mặt cười</string>
+    <string name="wink_face">Nháy mắt</string>
 </resources>
