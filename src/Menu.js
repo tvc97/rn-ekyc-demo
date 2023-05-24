@@ -6,7 +6,7 @@ import FWLoading from './components/FWLoading';
 import { useEKYC } from './hooks/useEKYC';
 
 const Menu = () => {
-  const { navigation } = useNavigation();
+  const navigation = useNavigation();
   const {
     mrzResult,
     nfcResult,
