@@ -43,7 +43,15 @@ export const useEKYC = () => {
     let platformResult = data;
 
     if (platform === 'android') {
-      // TODO
+      let parsedData = {};
+      try {
+        parsedData = JSON.parse(data.result);
+      } catch {}
+      const { image_action, ...data } = parsedData;
+      platformResult = {
+        images: image_action?.map?.(item => item.image) || [],
+        data
+      };
     }
 
     return platformResult;
@@ -62,6 +70,7 @@ export const useEKYC = () => {
         const { images, data } = getResultForPlatform(value, Platform.OS);
         setStateWithPrevious({ [key]: data });
         setImages(images);
+        navigation.goBack();
         break;
     }
 
@@ -71,7 +80,15 @@ export const useEKYC = () => {
         delete value.images;
         setStateWithPrevious({ [key]: value, scanningNFC: false });
       } else {
-        // TODO
+        let result = {};
+        try {
+          result = JSON.parse(value.result);
+        } catch {}
+        if (result.image_action) {
+          setImages(result.image_action.map(item => item.image));
+          delete result.image_action;
+        }
+        setStateWithPrevious({ [key]: result, scanningNFC: false });
       }
     } else {
       setStateWithPrevious({ [key]: value, scanningNFC: false });
