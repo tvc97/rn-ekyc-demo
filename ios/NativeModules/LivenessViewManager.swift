@@ -25,7 +25,9 @@ class LivenessViewManager: RCTViewManager {
     livenessDetector?.delegate = self
     
     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-      self.livenessDetector?.getVerificationRequiresAndStartSession()
+      do {
+        try self.livenessDetector?.getVerificationRequiresAndStartSession()
+      } catch {}
     }
     
     return uiView
