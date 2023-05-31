@@ -26,7 +26,7 @@ class MRZViewManager: RCTViewManager {
 extension MRZViewManager: QKMRZScannerViewDelegate {
     func mrzScannerView(_ mrzScannerView: QKMRZScannerView, didFind scanResult: QKMRZScanResult) {
       let dateFormatter = DateFormatter()
-      dateFormatter.dateFormat = "YYMMdd"
+      dateFormatter.dateFormat = "dd/MM/YYYY"
       let humanizeDate = DateFormatter()
       humanizeDate.dateFormat = "YYYY-MM-dd"
       
