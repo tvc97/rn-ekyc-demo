@@ -26,9 +26,7 @@ class MRZViewManager: RCTViewManager {
 extension MRZViewManager: QKMRZScannerViewDelegate {
     func mrzScannerView(_ mrzScannerView: QKMRZScannerView, didFind scanResult: QKMRZScanResult) {
       let dateFormatter = DateFormatter()
-      dateFormatter.dateFormat = "dd/MM/YYYY"
-      let humanizeDate = DateFormatter()
-      humanizeDate.dateFormat = "YYYY-MM-dd"
+      dateFormatter.dateFormat = "dd/MM/yyyy"
       
       NativeModuleManager.sharedValues.cardId = scanResult.documentNumber
       NativeModuleManager.sharedValues.dateOfBirth = dateFormatter.string(from: scanResult.birthdate!)
@@ -36,8 +34,8 @@ extension MRZViewManager: QKMRZScannerViewDelegate {
 
       EventEmitter.shared.dispatch(event: .onMRZScanned, body: [
         "documentNumber": scanResult.documentNumber,
-        "birthdate": humanizeDate.string(from: scanResult.birthdate!),
-        "expiryDate": humanizeDate.string(from: scanResult.expiryDate!),
+        "birthdate": dateFormatter.string(from: scanResult.birthdate!),
+        "expiryDate": dateFormatter.string(from: scanResult.expiryDate!),
         "mrz": mrzScannerView.mrz
       ])
       
